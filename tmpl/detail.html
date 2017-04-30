@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+<div class="col-lg-6 col-lg-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <input type="text" ng-model="temp.bookName" ng-hide="flag">
+            {{book.bookName}}
+        </div>
+        <div class="panel-body" style="text-align: center;">
+            <!--ng-src 默认不发请求  等数据加载好后  在请求图片-->
+            <img ng-src="{{book.bookCover}}" alt="" style="width: 200px;height: 250px;">
+        </div>
+        <div class="panel-footer">
+            <!--/detail/2-->
+            <input type="text" ng-model="temp.bookPrice" ng-hide="flag">
+            {{book.bookPrice | currency: 'RMB'}}
+            <button class="btn btn-danger" ng-click="remove()" ng-show="flag">删除</button>
+            <button class="btn btn-warning" ng-show="flag" ng-click="changeFlag()">修改</button>
+
+            <button class="btn btn-default" ng-hide="flag" ng-click="flag = true">取消</button>
+            <button class="btn btn-primary" ng-hide="flag" ng-click="sure()">确认</button>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>我的书店</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .img-h{
+            transition: 2s;
+            -webkit-transition: 2s; /* Safari */
+        }
+        .img-h:hover{
+            transform: rotateX(360deg);
+            -webkit-transform: rotateX(360deg);	/* Safari 和 Chrome */
+            -moz-transform: rotateX(360deg);	/* Firefox */
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse" style="margin-bottom: 5px">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#!/home" class="navbar-brand">书店</a>
+        </div>
+        <div>
+            <nav class="navbar-nav nav">
+                <li><a href="#!/home">首页</a></li>
+                <li><a href="#!/list">我的书店</a></li>
+                <li><a href="#!/add">添加书籍</a></li>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div ng-view></div>
+
+<div class="navbar navbar-inverse navbar-fixed-bottom text-center" style="color: #fff;">
+    &copy;课程内容版权
+</div>
+<script src="./node_modules/jquery/dist/jquery.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="./node_modules/angular/angular.js"></script>
+<script src="./node_modules/angular-resource/angular-resource.js"></script>
+<script src="./node_modules/angular-route/angular-route.js"></script>
+<script src="controller.js"></script>
+
+<script>
+    //1.
+    var app = angular.module('appModule',['ngResource','ngRoute','appModule.controller']);
+    //3.配置服务  封装一个操作的服务  任何控制器都可以用
+    app.factory('book',function($resource){
+        return $resource('/book/:id',null,{
+            update:{methed:'PUT'}
+        })
+    });
+
+    //2. 配置$route服务   配置路由
+    app.config(['$routeProvider',function($routeProvider){
+        //配置路由
+        $routeProvider.when('/home',{   //url
+            templateUrl:'tmpl/home.html',  //跳转路径页面
+            controller:'homeCtrl'   //绑定控制器名
+        }).when('/add',{
+            templateUrl:'tmpl/add.html',
+            controller:'addCtrl'
+        }).when('/list',{
+            templateUrl:'tmpl/list.html',
+            controller:'listCtrl'
+        }).when('/detail/:id',{  //url  id必须有 随机的
+            templateUrl:'tmpl/detail.html',
+            controller:'detailCtrl'
+        }).otherwise('/home');  //如果都匹配不到  跳转/home页面
+    }])
+</script>
+</body>
+</html>

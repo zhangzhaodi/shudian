@@ -1,0 +1,47 @@
+<!--novalidate="novalidate"  关闭h5校验-->
+<div style="width: 100%;height: 350px;background:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493550789400&di=e4d1c235ab1150aba7af4eaaef0c9382&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2832953785%2C3386103316%26fm%3D214%26gp%3D0.jpg) no-repeat;background-size: 100% 100%;">
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-offset-2">
+            <form name="myform" novalidate="novalidate" style="margin-top: 20px">
+                <div class="form-group">
+                    <!--for根据input id 绑定-->
+                    <label for="bookName" class="control-label">书名</label>
+                    <input type="text" class="form-control" id="bookName" name="bookName" placeholder="请输入书名"
+                        ng-model="book.bookName"
+                        autocomplete="off"
+                        ng-required="true"
+                    >
+                    <div class="alert alert-danger" ng-show="myform.bookName.$error.required&&myform.bookName.$dirty">书名必须填写</div>
+                </div>
+                <div class="form-group">
+                    <label for="bookPrice" class="control-label">价格</label>
+                    <input type="text" class="form-control" id="bookPrice" name="bookPrice" placeholder="请输入价格"
+                         ng-model="book.bookPrice"
+                         autocomplete="off"
+                         ng-required="true"
+                         ng-pattern="/^\d+$/"
+                    >
+                    <div class="alert alert-danger" ng-show="myform.bookPrice.$error.pattern">价格必须填写数字类型</div>
+                    <div class="alert alert-danger" ng-show="myform.bookPrice.$error.required&&myform.bookPrice.$dirty">价格必须填写</div>
+                </div>
+                <div class="form-group">
+                    <label for="bookCover" class="control-label">封面图</label>
+                    <input type="text" class="form-control" id="bookCover" name="bookCover" placeholder="请输入封面"
+                           ng-model="book.bookCover"
+                           ng-required="true"
+                           autocomplete="off"
+                    >
+                    <div class="alert alert-danger" ng-show="myform.bookCover.$error.required&&myform.bookCover.$dirty">封面必须填写</div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-warning" type="button" ng-disabled="myform.$invalid" ng-click="add()">添加书籍</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--form表单 根据name 打印form的属性打印出来-->
+<!--<pre>{{myform | json}}</pre>-->

@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+<div class="col-lg-3" ng-repeat="book in books track by $index">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            {{book.bookName}}
+        </div>
+        <div class="panel-body" style="text-align: center;">
+            <!--ng-src 默认不发请求  等数据加载好后  在请求图片-->
+            <img ng-src="{{book.bookCover}}" alt="" style="width: 200px;height: 250px;">
+        </div>
+        <div class="panel-footer">
+            <!--/detail/2-->
+{{book.bookPrice | currency: 'RMB'}}
+<a href="#!/detail/{{book.id}}" class="btn btn-default">进入详情</a>
+</div>
+</div>
+</div>
+        </div>
+    </div>
+</div>
