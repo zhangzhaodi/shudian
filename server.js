@@ -122,6 +122,6 @@ http.createServer(function(req,res){  //req服务器接收  res响应客户端
             }
         })
     }
-}).listen(8080,function(){
+}).listen(80,function(){
     console.log('run  8080 ')
 });
